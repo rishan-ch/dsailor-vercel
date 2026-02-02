@@ -11,6 +11,8 @@ export function Footer({ className }: FooterProps) {
     { name: "About Us", href: "/#about" },
     { name: "Services", href: "/#services" },
     { name: "Contact", href: "/contact" },
+    { name: "Code of Conduct", href: "https://www.mara.gov.au/tools-for-agents-subsite/Files/code-of-conduct-march-2022.pdf" },
+    { name: "Consumer Guide", href: "https://www.mara.gov.au/get-help-visa-subsite/FIles/consumer_guide_english.pdf" }
   ]
 
   const services = [
