@@ -1,18 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { Header } from "@/components/header"
-import { HeroSection } from "@/components/hero-section"
-import { AboutTestimonialsSection } from "@/components/about-testimonials-section"
-import { Footer } from "@/components/footer"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
-import Image from "next/image"
 import { Gavel, FileText, LogIn, Calendar, Home, Briefcase, GraduationCap, Plane, Badge, Users, Globe, Lightbulb } from "lucide-react"
-import { Separator } from "@/components/ui/separator"
-import { useToast } from "@/hooks/use-toast"
-import { Toaster } from "@/components/ui/toaster"
 
 // Custom hook to detect when an element is in view
 function useInView(options = { threshold: 0.1 }) {
@@ -46,7 +35,6 @@ function useInView(options = { threshold: 0.1 }) {
 }
 
 export default function HomePage() {
-  const { toast } = useToast();
   
   const services = [
     {
