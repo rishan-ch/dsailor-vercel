@@ -18,7 +18,7 @@ export function AboutTestimonialsSection({ className }: AboutTestimonialsSection
       company: "Bar Heather",
       image: "/professional-woman-headshot.png",
       rating: 5,
-      text: "Dream Sailor Consulting Pvt Ltd helped me find the perfect job opportunity abroad. Their recruitment team was professional and supportive throughout the entire process.",
+      text: "Dream Sailor Consulting Pty Ltd helped me find the perfect job opportunity abroad. Their recruitment team was professional and supportive throughout the entire process.",
     },
     {
       id: 2,
@@ -57,7 +57,7 @@ export function AboutTestimonialsSection({ className }: AboutTestimonialsSection
           {/* About Us */}
           <div className="animate-slide-left">
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6 animate-fade-in">
-              About Dream Sailor Consulting Pvt Ltd
+              About Dream Sailor Consulting Pty Ltd
             </h2>
             <div className="space-y-4 text-muted-foreground">
               <p className="text-pretty animate-fade-in delay-100">

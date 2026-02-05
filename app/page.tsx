@@ -138,20 +138,6 @@ export default function HomePage() {
         
         <section id="welcome" className="py-20 bg-muted/30">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-center gap-8">
-            {/* <div className="lg:w-1/2 w-full">
-              {(() => {
-                const { ref, isVisible } = useInView()
-                return (
-                  <div ref={ref} className={isVisible ? "animate-slide-left" : "opacity-0"}>
-                    <img
-                      src="/welcome.png"
-                      alt="Welcome to Dream Sailor Consulting"
-                      className={`w-full h-auto max-h-96 object-cover rounded-lg shadow-md ${isVisible ? "animate-scale-in" : "opacity-0"}`}
-                    />
-                  </div>
-                )
-              })()}
-            </div> */}
             <div className="lg:w-1/2 w-full">
               {(() => {
                 const { ref, isVisible } = useInView()
@@ -563,7 +549,7 @@ export default function HomePage() {
                   </div>
                   <div className="flex flex-col items-center group">
                     <Plane className="h-16 w-16 text-primary group-hover:scale-110 group-hover:text-blue-700 transition-transform duration-300" />
-                    <span className="text-sm text-muted-foreground mt-2">Travel</span>
+                    <span className="text-sm text-muted-foreground mt-2">Migration</span>
                   </div>
                   <div className="flex flex-col items-center group">
                     <Home className="h-16 w-16 text-primary group-hover:scale-110 group-hover:text-blue-700 transition-transform duration-300" />

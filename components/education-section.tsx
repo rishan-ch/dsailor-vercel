@@ -17,7 +17,7 @@ import {
   ChevronDown,
   ExternalLink,
   ChevronRight,
-  X,
+  X
 } from "lucide-react";
 import BlogSection from "./ui/blog-card-view";
 import { useEffect, useState } from "react";
@@ -29,7 +29,8 @@ import {
   type ServiceDetails,
 } from "@/components/ui/service-dialog";
 import { createPortal } from "react-dom";
-import { useRef } from "react";
+import { useInView } from "@/hooks/use-in-view";
+import { Badge } from "./ui/badge";
 
 interface Blog {
   blogId: string;
@@ -61,6 +62,16 @@ type UniversitiesMap = {
   canada: UniversityGroup;
   newzealand: UniversityGroup;
 };
+
+interface Consultant {
+  name: string;
+  role: string;
+  description: string;
+  photo: string;
+  certificates: string[];
+  email: string;
+  contactNumber: string;
+}
 
 type CountryKey = keyof UniversitiesMap;
 
@@ -138,8 +149,14 @@ const universities: UniversitiesMap = {
       { name: "University of Oxford", url: "https://www.ox.ac.uk/" },
       { name: "University of Cambridge", url: "https://www.cam.ac.uk/" },
       { name: "Imperial College London", url: "https://www.imperial.ac.uk/" },
-      { name: "London School of Economics (LSE)", url: "https://www.lse.ac.uk/" },
-      { name: "University College London (UCL)", url: "https://www.ucl.ac.uk/" },
+      {
+        name: "London School of Economics (LSE)",
+        url: "https://www.lse.ac.uk/",
+      },
+      {
+        name: "University College London (UCL)",
+        url: "https://www.ucl.ac.uk/",
+      },
     ],
   },
   usa: {
@@ -167,12 +184,35 @@ const universities: UniversitiesMap = {
     universities: [
       { name: "University of Auckland", url: "https://www.auckland.ac.nz/" },
       { name: "University of Otago", url: "https://www.otago.ac.nz/" },
-      { name: "Victoria University of Wellington", url: "https://www.wgtn.ac.nz/" },
-      { name: "University of Canterbury", url: "https://www.canterbury.ac.nz/" },
+      {
+        name: "Victoria University of Wellington",
+        url: "https://www.wgtn.ac.nz/",
+      },
+      {
+        name: "University of Canterbury",
+        url: "https://www.canterbury.ac.nz/",
+      },
       { name: "AUT University", url: "https://www.aut.ac.nz/" },
     ],
   },
 };
+
+const recruitmentConsultants: Consultant[] = [
+  {
+    name: "Ms. Saglina Shrestha",
+    role: "Founder/ Managing Director",
+    description:
+      "Expert in matching candidates with executive positions, she has successfully placed over 500 professionals in multinational corporations worldwide.",
+    photo: "/Salina_Shrestha.png",
+    certificates: [
+      "Executive Search Certification",
+      "LinkedIn Recruiter Certification",
+      "Talent Management Diploma",
+    ],
+    email: "enquiry@dsailorgroup.com.au",
+    contactNumber: "0406204071",
+  },
+];
 
 export function EducationSection() {
   const [blogs, setBlogs] = useState<Blog[]>([]);
@@ -191,13 +231,16 @@ export function EducationSection() {
   const [formSuccess, setFormSuccess] = useState(false);
   const [formError, setFormError] = useState("");
   const [selectedService, setSelectedService] = useState<ServiceDetails | null>(
-    null
+    null,
   );
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const { getBlogByService } = useBlogService();
   const [openCountry, setOpenCountry] = useState<CountryKey | null>(null);
   const [hoverState, setHoverState] = useState<string | null>(null);
-  const [popupPosition, setPopupPosition] = useState<{ top: number; left: number } | null>(null);
+  const [popupPosition, setPopupPosition] = useState<{
+    top: number;
+    left: number;
+  } | null>(null);
 
   const handleOpen = (e: React.MouseEvent, key: CountryKey) => {
     if (openCountry === key) {
@@ -205,9 +248,9 @@ export function EducationSection() {
       setHoverState(null);
       return;
     }
-    
+
     const rect = e.currentTarget.getBoundingClientRect();
-    
+
     // Position for desktop popover
     setPopupPosition({
       top: rect.bottom + window.scrollY + 8,
@@ -347,7 +390,7 @@ export function EducationSection() {
   const handleInputChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+    >,
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -365,12 +408,10 @@ export function EducationSection() {
     setFormError("");
 
     try {
-      const { educationApplicationService } = await import(
-        "@/lib/educationApplicationService"
-      );
-      const result = await educationApplicationService.submitApplication(
-        formData
-      );
+      const { educationApplicationService } =
+        await import("@/lib/educationApplicationService");
+      const result =
+        await educationApplicationService.submitApplication(formData);
 
       if (result.success) {
         setFormSuccess(true);
@@ -391,7 +432,7 @@ export function EducationSection() {
     } catch (error) {
       console.error("Error submitting form:", error);
       setFormError(
-        error instanceof Error ? error.message : "An unknown error occurred"
+        error instanceof Error ? error.message : "An unknown error occurred",
       );
     } finally {
       setIsSubmitting(false);
@@ -556,141 +597,181 @@ export function EducationSection() {
 
               {/* COUNTRY GRID */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-6xl mx-auto">
-                {(Object.entries(universities) as [CountryKey, any][]).map(([key, data]) => (
-                  <div key={key} className="relative">
-                    <button
-                      onClick={(e) => handleOpen(e, key as CountryKey)}
-                      className="w-full rounded-xl border border-border bg-card px-4 sm:px-6 py-4 sm:py-5 flex justify-between items-center shadow-sm hover:shadow-md transition-all active:scale-95"
-                    >
-                      <span className="text-base sm:text-lg font-semibold">{data.name}</span>
-                      <ChevronDown className={`w-5 h-5 transition-transform ${openCountry === key ? 'rotate-180' : ''}`} />
-                    </button>
-                    
-                    {/* Mobile inline dropdown */}
-                    {openCountry === key && (
-                      <div className="md:hidden mt-2 rounded-xl border border-border bg-card shadow-lg overflow-hidden max-h-96 overflow-y-auto">
-                        {key === "australia" ? (
-                          <div className="flex flex-col">
-                            {Object.keys(universities.australia.states).map((state) => (
-                              <div key={state}>
-                                <button
-                                  onClick={() => setHoverState(hoverState === state ? null : state)}
-                                  className={`w-full px-4 py-3 flex justify-between items-center transition-colors border-b border-border/50 ${hoverState === state ? 'bg-primary/10 text-primary' : 'hover:bg-muted'}`}
-                                >
-                                  <span className="font-medium">{state}</span>
-                                  <ChevronRight className={`w-4 h-4 transition-transform ${hoverState === state ? 'rotate-90' : ''}`} />
-                                </button>
-                                {hoverState === state && (
-                                  <div className="bg-muted/30 px-2 py-2">
-                                    {universities.australia.states[state].map((uni) => (
-                                      <a
-                                        key={uni.name}
-                                        href={uni.url}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="flex justify-between items-center px-4 py-3 rounded-md hover:bg-primary/5 transition-colors"
-                                      >
-                                        <span className="text-sm">{uni.name}</span>
-                                        <ExternalLink className="w-4 h-4 opacity-40" />
-                                      </a>
-                                    ))}
+                {(Object.entries(universities) as [CountryKey, any][]).map(
+                  ([key, data]) => (
+                    <div key={key} className="relative">
+                      <button
+                        onClick={(e) => handleOpen(e, key as CountryKey)}
+                        className="w-full rounded-xl border border-border bg-card px-4 sm:px-6 py-4 sm:py-5 flex justify-between items-center shadow-sm hover:shadow-md transition-all active:scale-95"
+                      >
+                        <span className="text-base sm:text-lg font-semibold">
+                          {data.name}
+                        </span>
+                        <ChevronDown
+                          className={`w-5 h-5 transition-transform ${openCountry === key ? "rotate-180" : ""}`}
+                        />
+                      </button>
+
+                      {/* Mobile inline dropdown */}
+                      {openCountry === key && (
+                        <div className="md:hidden mt-2 rounded-xl border border-border bg-card shadow-lg overflow-hidden max-h-96 overflow-y-auto">
+                          {key === "australia" ? (
+                            <div className="flex flex-col">
+                              {Object.keys(universities.australia.states).map(
+                                (state) => (
+                                  <div key={state}>
+                                    <button
+                                      onClick={() =>
+                                        setHoverState(
+                                          hoverState === state ? null : state,
+                                        )
+                                      }
+                                      className={`w-full px-4 py-3 flex justify-between items-center transition-colors border-b border-border/50 ${hoverState === state ? "bg-primary/10 text-primary" : "hover:bg-muted"}`}
+                                    >
+                                      <span className="font-medium">
+                                        {state}
+                                      </span>
+                                      <ChevronRight
+                                        className={`w-4 h-4 transition-transform ${hoverState === state ? "rotate-90" : ""}`}
+                                      />
+                                    </button>
+                                    {hoverState === state && (
+                                      <div className="bg-muted/30 px-2 py-2">
+                                        {universities.australia.states[
+                                          state
+                                        ].map((uni) => (
+                                          <a
+                                            key={uni.name}
+                                            href={uni.url}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="flex justify-between items-center px-4 py-3 rounded-md hover:bg-primary/5 transition-colors"
+                                          >
+                                            <span className="text-sm">
+                                              {uni.name}
+                                            </span>
+                                            <ExternalLink className="w-4 h-4 opacity-40" />
+                                          </a>
+                                        ))}
+                                      </div>
+                                    )}
                                   </div>
-                                )}
-                              </div>
-                            ))}
-                          </div>
-                        ) : (
-                          <div className="p-2">
-                            {universities[key].universities.map((uni) => (
-                              <a
-                                key={uni.name}
-                                href={uni.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex justify-between items-center px-4 py-4 rounded-lg hover:bg-primary/5 transition-colors border-b border-border/30 last:border-0"
-                              >
-                                <span className="text-sm">{uni.name}</span>
-                                <ExternalLink className="w-4 h-4 opacity-40" />
-                              </a>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                ))}
+                                ),
+                              )}
+                            </div>
+                          ) : (
+                            <div className="p-2">
+                              {universities[key].universities.map((uni) => (
+                                <a
+                                  key={uni.name}
+                                  href={uni.url}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="flex justify-between items-center px-4 py-4 rounded-lg hover:bg-primary/5 transition-colors border-b border-border/30 last:border-0"
+                                >
+                                  <span className="text-sm">{uni.name}</span>
+                                  <ExternalLink className="w-4 h-4 opacity-40" />
+                                </a>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  ),
+                )}
               </div>
             </div>
 
             {/* DESKTOP PORTAL CONTENT */}
-            {openCountry && typeof window !== 'undefined' && createPortal(
-              <>
-                {/* Desktop backdrop: Invisible click catcher */}
-                <div 
-                  className="hidden md:block fixed inset-0 z-40"
-                  onClick={() => setOpenCountry(null)}
-                />
+            {openCountry &&
+              typeof window !== "undefined" &&
+              createPortal(
+                <>
+                  {/* Desktop backdrop: Invisible click catcher */}
+                  <div
+                    className="hidden md:block fixed inset-0 z-40"
+                    onClick={() => setOpenCountry(null)}
+                  />
 
-                <div
-                  className="hidden md:flex z-50 bg-card border border-border shadow-2xl rounded-xl absolute"
-                  style={{
-                    top: popupPosition?.top,
-                    left: popupPosition?.left,
-                  }}
-                >
-                  {openCountry === "australia" ? (
-                    <>
-                      {/* STATES COLUMN */}
-                      <div className="w-56 p-2 border-r border-border">
-                        {Object.keys(universities.australia.states).map((state) => (
-                          <div
-                            key={state}
-                            onMouseEnter={() => setHoverState(state)}
-                            className={`px-4 py-2 rounded-lg flex justify-between items-center cursor-pointer transition-colors ${hoverState === state ? 'bg-primary/10 text-primary' : 'hover:bg-muted'}`}
-                          >
-                            <span className="font-medium text-sm">{state}</span>
-                            <ChevronRight className="w-4 h-4 opacity-60" />
-                          </div>
+                  <div
+                    className="hidden md:flex z-50 bg-card border border-border shadow-2xl rounded-xl absolute"
+                    style={{
+                      top: popupPosition?.top,
+                      left: popupPosition?.left,
+                    }}
+                  >
+                    {openCountry === "australia" ? (
+                      <>
+                        {/* STATES COLUMN */}
+                        <div className="w-56 p-2 border-r border-border">
+                          {Object.keys(universities.australia.states).map(
+                            (state) => (
+                              <div
+                                key={state}
+                                onMouseEnter={() => setHoverState(state)}
+                                className={`px-4 py-2 rounded-lg flex justify-between items-center cursor-pointer transition-colors ${hoverState === state ? "bg-primary/10 text-primary" : "hover:bg-muted"}`}
+                              >
+                                <span className="font-medium text-sm">
+                                  {state}
+                                </span>
+                                <ChevronRight className="w-4 h-4 opacity-60" />
+                              </div>
+                            ),
+                          )}
+                        </div>
+
+                        {/* UNIVERSITIES COLUMN */}
+                        <div className="w-80 p-3">
+                          {hoverState ? (
+                            <ul className="space-y-1">
+                              {universities.australia.states[hoverState].map(
+                                (uni) => (
+                                  <li key={uni.name}>
+                                    <a
+                                      href={uni.url}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="flex justify-between items-center px-4 py-2 rounded-md hover:bg-primary/5 transition-colors"
+                                    >
+                                      <span className="text-sm">
+                                        {uni.name}
+                                      </span>
+                                      <ExternalLink className="w-4 h-4 opacity-40" />
+                                    </a>
+                                  </li>
+                                ),
+                              )}
+                            </ul>
+                          ) : (
+                            <p className="text-xs text-muted-foreground px-4 py-2">
+                              Hover over a state to view universities
+                            </p>
+                          )}
+                        </div>
+                      </>
+                    ) : (
+                      /* NON-AUSTRALIA COUNTRIES */
+                      <ul className="p-3 w-80 space-y-1">
+                        {universities[openCountry].universities.map((uni) => (
+                          <li key={uni.name}>
+                            <a
+                              href={uni.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex justify-between items-center px-4 py-3 rounded-lg hover:bg-primary/5 transition-colors"
+                            >
+                              <span className="text-sm">{uni.name}</span>
+                              <ExternalLink className="w-4 h-4 opacity-40" />
+                            </a>
+                          </li>
                         ))}
-                      </div>
-
-                      {/* UNIVERSITIES COLUMN */}
-                      <div className="w-80 p-3">
-                        {hoverState ? (
-                          <ul className="space-y-1">
-                            {universities.australia.states[hoverState].map((uni) => (
-                              <li key={uni.name}>
-                                <a href={uni.url} target="_blank" rel="noopener noreferrer" className="flex justify-between items-center px-4 py-2 rounded-md hover:bg-primary/5 transition-colors">
-                                  <span className="text-sm">{uni.name}</span>
-                                  <ExternalLink className="w-4 h-4 opacity-40" />
-                                </a>
-                              </li>
-                            ))}
-                          </ul>
-                        ) : (
-                          <p className="text-xs text-muted-foreground px-4 py-2">
-                            Hover over a state to view universities
-                          </p>
-                        )}
-                      </div>
-                    </>
-                  ) : (
-                    /* NON-AUSTRALIA COUNTRIES */
-                    <ul className="p-3 w-80 space-y-1">
-                      {universities[openCountry].universities.map((uni) => (
-                        <li key={uni.name}>
-                          <a href={uni.url} target="_blank" rel="noopener noreferrer" className="flex justify-between items-center px-4 py-3 rounded-lg hover:bg-primary/5 transition-colors">
-                            <span className="text-sm">{uni.name}</span>
-                            <ExternalLink className="w-4 h-4 opacity-40" />
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-              </>,
-              document.body
-            )}
+                      </ul>
+                    )}
+                  </div>
+                </>,
+                document.body,
+              )}
           </section>
 
           {/* Stats Section */}
@@ -1025,6 +1106,110 @@ export function EducationSection() {
             </Card>
           </div>
         </div>
+      </section>
+
+      {/* Consultants Section */}
+      <section id="team" className="py-20">
+        {(() => {
+          const { ref, isVisible } = useInView<HTMLDivElement>();
+          return (
+            <div
+              ref={ref}
+              className={`container mx-auto px-4 sm:px-6 lg:px-8 ${
+                isVisible ? "animate-fade-in-up" : "opacity-0"
+              }`}
+            >
+              <div className="text-center mb-16">
+                <h2
+                  className={`text-3xl sm:text-4xl font-bold text-primary mb-4 flex items-center justify-center ${
+                    isVisible ? "animate-slide-up" : "opacity-0"
+                  }`}
+                >
+                  <Users className="h-8 w-8 mr-2 text-accent" />
+                  Meet Our Expert Consultants
+                </h2>
+                <p
+                  className={`text-xl text-muted-foreground max-w-3xl mx-auto text-pretty ${
+                    isVisible ? "animate-fade-in delay-100" : "opacity-0"
+                  }`}
+                >
+                  Our certified recruitment professionals bring decades of
+                  combined experience in connecting top talent with leading
+                  organizations worldwide.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 place-items-center">
+                {recruitmentConsultants.map((consultant, index) => (
+                  <Card
+                    key={consultant.name}
+                    className={`relative w-full max-w-sm bg-white border border-primary/10 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 ${
+                      isVisible ? "animate-slide-up" : "opacity-0"
+                    }`}
+                    style={{ animationDelay: `${index * 100}ms` }}
+                  >
+                    <CardHeader className="pt-8 pb-4">
+                      <div className="flex justify-center">
+                        <div className="relative w-40 h-40 rounded-full overflow-hidden border-4 border-primary/10">
+                          <img
+                            src={consultant.photo}
+                            alt={consultant.name}
+                            className={`absolute inset-0 w-full h-full object-contain bg-white ${
+                              isVisible ? "animate-scale-in" : "opacity-0"
+                            }`}
+                          />
+                        </div>
+                      </div>
+                    </CardHeader>
+                    <CardContent className="text-center">
+                      <h3
+                        className={`font-semibold text-lg ${
+                          isVisible ? "animate-fade-in" : "opacity-0"
+                        }`}
+                      >
+                        {consultant.name}
+                      </h3>
+                      <p
+                        className={`text-sm text-muted-foreground mb-2 ${
+                          isVisible ? "animate-fade-in delay-100" : "opacity-0"
+                        }`}
+                      >
+                        {consultant.role}
+                      </p>
+                      <p
+                        className={`text-sm text-pretty mb-2 ${
+                          isVisible ? "animate-fade-in delay-200" : "opacity-0"
+                        }`}
+                      >
+                        {consultant.description}
+                      </p>
+                      <p
+                        className={`text-sm text-muted-foreground mb-2 ${
+                          isVisible ? "animate-fade-in delay-300" : "opacity-0"
+                        }`}
+                      >
+                        <strong>Email:</strong> {consultant.email}
+                      </p>
+                      <p
+                        className={`text-sm text-muted-foreground mb-2 ${
+                          isVisible ? "animate-fade-in delay-400" : "opacity-0"
+                        }`}
+                      >
+                        <strong>Contact:</strong> {consultant.contactNumber}
+                      </p>
+                      <div
+                        className={`flex flex-wrap gap-2 mt-2 justify-center ${
+                          isVisible ? "animate-fade-in delay-500" : "opacity-0"
+                        }`}
+                      >
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          );
+        })()}
       </section>
 
       {/* Blog Section */}

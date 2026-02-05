@@ -231,7 +231,7 @@ export function VisaMigrationSection() {
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty leading-relaxed">
               Embark on your journey to Australia with our expert visa and migration
-              services, tailored to make your dreams a reality.
+              services, tailored to make your dreams a reality with DreamSailor.
             </p>
           </div>
 
@@ -395,7 +395,7 @@ export function VisaMigrationSection() {
                         isVisible ? "animate-fade-in delay-100" : "opacity-0"
                       }`}
                     >
-                      Unlock your pathway to permanent residency in Australia through our expert skilled migration services.
+                      Unlock your pathway to permanent residency in Australia through our expert skilled migration services with DreamSailor.
                     </p>
                   </div>
 

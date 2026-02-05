@@ -24,7 +24,7 @@ export function HeroSection({ className }: HeroSectionProps) {
           Empowering Dreams, Creating Opportunities
         </h1>
         <p className="text-xl sm:text-2xl text-white/90 mb-8 max-w-3xl mx-auto text-pretty animate-fade-in delay-100">
-          Your trusted partner in real estate, recruitment, education, and migration services. Bringing 2+ decades of combined experience in one roof.
+          Your trusted partner in real estate, recruitment, business management, education, and migration services. Bringing 2+ decades of combined experience in one roof.
         </p>
         <Button
           size="lg"

@@ -2,36 +2,23 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import {
   Calendar,
-  Clock,
   Briefcase,
   TrendingUp,
   DollarSign,
-  Globe,
   Code,
   Megaphone,
   CheckCircle2,
 } from "lucide-react";
 import {
-  GraduationCap,
   Globe as GlobeIcon,
   Users,
-  Star,
-  ArrowRight,
+  Star
 } from "lucide-react";
 import Link from "next/link";
 import { InquiryTypeEnum } from "@/lib/enums/BusinessNEventsInquryTypeEnum";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-} from "@/components/ui/dialog";
-import { MapPin, Eye, Loader2, Bed, Bath, Square } from "lucide-react";
-import { useEffect, useRef, useState, ChangeEvent } from "react";
+import { useEffect, useState, ChangeEvent } from "react";
 import { useBlogService } from "@/lib/blogService";
 
 import BlogSection from "./ui/blog-card-view";
@@ -62,8 +49,8 @@ const businessConsultants: Consultant[] = [
     description:
       "A seasoned business leader with over a decade of experience in managing and advising organizations across multiple industries. Mr. Shrestha plays a key role in strategic planning, operational oversight, and investor-aligned business management, ensuring smooth execution of business initiatives and high-impact corporate events.",
     photo: "/Pushkar_Shrestha.png",
-    email: "busines@dsailorgroup.com.au/ recruitment@dsailorgroup.com.au",
-    contactNumber: "+61-406704062 / 0406204071",
+    email: "enquiry@dsailorgroup.com.au",
+    contactNumber: "0406204071",
   },
   {
     name: "Ms. Saglina Shrestha",
@@ -71,8 +58,8 @@ const businessConsultants: Consultant[] = [
     description:
       "An accomplished business strategist and managing director with extensive experience in executive leadership and organizational growth. Ms. Shrestha oversees business development, high-level decision-making, and corporate event direction, helping organizations align their goals with measurable outcomes and long-term success.",
     photo: "/Salina_Shrestha.png",
-    email: "busines@dsailorgroup.com.au/ recruitment@dsailorgroup.com.au",
-    contactNumber: "+61-406704062 / 0406204071",
+    email: "enquiry@dsailorgroup.com.au",
+    contactNumber: "0406204071",
   },
   {
     name: "Mr. Nitesh Pokhrel",
@@ -80,8 +67,8 @@ const businessConsultants: Consultant[] = [
     description:
       "A corporate operations specialist with strong expertise in business coordination and large-scale operational management. Mr. Pokhrel focuses on corporate governance, cross-functional execution, and business event facilitation, ensuring seamless coordination between stakeholders, partners, and operational teams.",
     photo: "/nitesh pokhrel.png",
-    email: "busines@dsailorgroup.com.au/ recruitment@dsailorgroup.com.au",
-    contactNumber: "+61-406704062 / 0406204071",
+    email: "enquiry@dsailorgroup.com.au",
+    contactNumber: "0406204071",
   },
 ];
 
@@ -354,50 +341,6 @@ export function BusinessEventsSection() {
                 </Card>
               );
             })}
-          </div>
-
-          <div className="bg-muted/30 rounded-lg p-8 mb-16">
-            <h3 className="text-2xl font-bold text-center mb-8">
-              Our Partner Networks
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {partnerSites.map((partner, idx) => (
-                <Card key={idx} className="hover:shadow-md transition-shadow">
-                  <CardContent className="pt-6">
-                    <div className="flex items-center space-x-3">
-                      <GlobeIcon className="h-5 w-5 text-primary flex-shrink-0" />
-                      <div>
-                        <p className="font-medium text-sm">{partner.name}</p>
-                        <a
-                          href={`https://${partner.url}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-xs text-primary hover:underline"
-                        >
-                          {partner.url}
-                        </a>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-
-          <div className="bg-primary/5 rounded-lg p-8 text-center">
-            <h3 className="text-2xl font-bold mb-4">Additional Resources</h3>
-            <p className="text-muted-foreground mb-6">
-              Access our certified broker profiles, success stories, and
-              comprehensive business checklists
-            </p>
-            <div className="flex flex-wrap gap-4 justify-center">
-              <Button variant="outline">Certified Broker Profiles</Button>
-              <Button variant="outline">Success Stories</Button>
-              <Button variant="outline">Business Checklists</Button>
-            </div>
-            <p className="text-sm text-muted-foreground mt-4">
-              * These sections will be added manually
-            </p>
           </div>
         </div>
       </section>

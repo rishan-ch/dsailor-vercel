@@ -12,7 +12,7 @@ const CANONICAL_DOMAIN = "https://www.dsailorgroup.com.au";
 // Static metadata
 export const metadata: Metadata = {
   title:
-    "Dream Sailor Consulting Pvt Ltd - Empowering Dreams, Creating Opportunities",
+    "Dream Sailor Consulting Pty Ltd - Empowering Dreams, Creating Opportunities",
   description:
     "Your trusted partner in real estate, recruitment, education, and migration services.",
   metadataBase: new URL(CANONICAL_DOMAIN),

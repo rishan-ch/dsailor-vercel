@@ -62,17 +62,17 @@ export function ContactSection() {
     {
       icon: <Phone className="h-5 w-5" />,
       title: "Phone",
-      details: ["0406204071", "0406704062"],
+      details: ["0406204071"],
     },
     {
       icon: <Mail className="h-5 w-5" />,
       title: "Email",
-      details: ["enquiry@dsailorgroup.com.au", "recruitment@dsailorgroup.com.au"],
+      details: ["enquiry@dsailorgroup.com.au"],
     },
     {
       icon: <Clock className="h-5 w-5" />,
       title: "Business Hours",
-      details: ["Mon - Fri: 9:00 AM - 6:00 PM", "Sat: 10:00 AM - 4:00 PM", "Sun: Closed"],
+      details: ["Mon - Fri: 9:00 AM - 6:00 PM", "Sat, Sun: Closed"],
     },
   ]
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect,  useState } from "react";
 import {
   Card,
   CardContent,
@@ -29,7 +29,6 @@ import {
   GraduationCap,
   BarChart,
   Wrench,
-  Eye,
   Loader2,
   FileText,
   Search,
@@ -42,11 +41,6 @@ import {
   Target,
   UserCheck,
   Building2,
-  Handshake,
-  ArrowRight,
-  Upload,
-  FileCheck,
-  UserPlus,
 } from "lucide-react";
 import { useBlogService } from "@/lib/blogService";
 import BlogSection from "./ui/blog-card-view";
@@ -54,9 +48,7 @@ import { useInView } from "@/hooks/use-in-view";
 import { useJobPostService } from "@/lib/jobPostService";
 import {
   JobPostFilterDto,
-  JobTypeEnum,
   ViewJobPostDto,
-  PaginatedList,
   getJobTypeLabel,
 } from "@/lib/jobPostService";
 import { Input } from "@/components/ui/input";
@@ -111,22 +103,8 @@ const recruitmentConsultants: Consultant[] = [
       "SHRM Certified Professional",
       "Global Talent Acquisition Specialist",
     ],
-    email: "busines@dsailorgroup.com.au/ recruitment@dsailorgroup.com.au",
-    contactNumber: "+61-406704062 / 0406204071",
-  },
-  {
-    name: "Ms. Saglina Shrestha",
-    role: "Founder/ Managing Director",
-    description:
-      "Expert in matching candidates with executive positions, she has successfully placed over 500 professionals in multinational corporations worldwide.",
-    photo: "/Salina_Shrestha.png",
-    certificates: [
-      "Executive Search Certification",
-      "LinkedIn Recruiter Certification",
-      "Talent Management Diploma",
-    ],
-    email: "busines@dsailorgroup.com.au/ recruitment@dsailorgroup.com.au",
-    contactNumber: "+61-406704062 / 0406204071",
+    email: "recruitment@dsailorgroup.com.au",
+    contactNumber: "0406204071",
   },
   {
     name: "Mr. Sohil Shrestha",
@@ -139,8 +117,8 @@ const recruitmentConsultants: Consultant[] = [
       "Work Visa Placement Expert",
       "Cross-Cultural Recruitment Specialist",
     ],
-    email: "busines@dsailorgroup.com.au/ recruitment@dsailorgroup.com.au",
-    contactNumber: "+61-406704062 / 0406204071",
+    email: "recruitment@dsailorgroup.com.au",
+    contactNumber: "0406204071",
   },
 ];
 
@@ -246,8 +224,8 @@ export function RecruitmentSection() {
           typeof job.jobType === "number"
             ? getJobTypeLabel(job.jobType)
             : job.jobType
-            ? String(job.jobType)
-            : "Not Specified",
+              ? String(job.jobType)
+              : "Not Specified",
         JobDescription: job.jobDescription || "",
         JobResponsibility: job.jobResponsibility || "",
         JobQualification: job.jobQualification || "",
@@ -311,10 +289,11 @@ export function RecruitmentSection() {
             Onshore & Offshore | Full-Time to Part-Time
           </p>
           <p className="text-base sm:text-lg text-white/90 mb-8 max-w-3xl mx-auto text-pretty animate-fade-in delay-150 leading-relaxed">
-            At Dream Sailor Consulting, we proudly make a difference beyond perfection. 
-            Our top-tier talents become an integral part of your business success story. 
-            Whether you're seeking exceptional employees or pursuing your dream career, 
-            we connect ambition with opportunity across borders and industries.
+            At Dream Sailor Consulting, we proudly make a difference beyond
+            perfection. Our top-tier talents become an integral part of your
+            business success story. Whether you're seeking exceptional employees
+            or pursuing your dream career, we connect ambition with opportunity
+            across borders and industries.
           </p>
           <div className="flex flex-wrap gap-4 justify-center animate-fade-in-up delay-200">
             <Link href="/book-consultation">
@@ -331,59 +310,76 @@ export function RecruitmentSection() {
       </section>
 
       {/* Main Content */}
-      <section id="recruitment" className="py-20 bg-gradient-to-b from-white to-gray-50">
+      <section
+        id="recruitment"
+        className="py-20 bg-gradient-to-b from-white to-gray-50"
+      >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl sm:text-5xl font-extrabold text-primary mb-6 tracking-tight flex items-center justify-center">
-              <Users className="h-10 w-10 mr-3 text-accent" /> 
+              <Users className="h-10 w-10 mr-3 text-accent" />
               Recruitment & Placement Excellence
             </h2>
             <p className="text-xl text-muted-foreground max-w-4xl mx-auto text-pretty leading-relaxed mb-8">
-              At Dream Sailor Consulting, recruitment transcends traditional hiring — it's about 
-              forging pathways to success. We proudly make a difference beyond perfection by 
-              connecting skilled professionals with organizations that value talent, innovation, 
-              and sustainable growth. Our comprehensive approach ensures perfect matches for 
-              both employers seeking exceptional talent and candidates pursuing meaningful careers.
+              At Dream Sailor Consulting, recruitment transcends traditional
+              hiring — it's about forging pathways to success. We proudly make a
+              difference beyond perfection by connecting skilled professionals
+              with organizations that value talent, innovation, and sustainable
+              growth. Our comprehensive approach ensures perfect matches for
+              both employers seeking exceptional talent and candidates pursuing
+              meaningful careers.
             </p>
-            
+
             {/* Value Proposition Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12 max-w-7xl mx-auto">
               <Card className="bg-gradient-to-br from-blue-50 to-blue-100 border-blue-200 hover:shadow-lg transition-all">
                 <CardContent className="pt-6 text-center">
                   <Globe className="h-14 w-14 mx-auto mb-4 text-blue-600" />
-                  <h3 className="font-bold text-lg mb-2 text-blue-900">Onshore & Offshore</h3>
+                  <h3 className="font-bold text-lg mb-2 text-blue-900">
+                    Onshore & Offshore
+                  </h3>
                   <p className="text-sm text-blue-700">
-                    Global reach with local expertise across multiple countries and industries
+                    Global reach with local expertise across multiple countries
+                    and industries
                   </p>
                 </CardContent>
               </Card>
-              
+
               <Card className="bg-gradient-to-br from-green-50 to-green-100 border-green-200 hover:shadow-lg transition-all">
                 <CardContent className="pt-6 text-center">
                   <Clock className="h-14 w-14 mx-auto mb-4 text-green-600" />
-                  <h3 className="font-bold text-lg mb-2 text-green-900">Flexible Engagement</h3>
+                  <h3 className="font-bold text-lg mb-2 text-green-900">
+                    Flexible Engagement
+                  </h3>
                   <p className="text-sm text-green-700">
-                    Full-time, part-time, contract, and casual opportunities tailored to your needs
+                    Full-time, part-time, contract, and casual opportunities
+                    tailored to your needs
                   </p>
                 </CardContent>
               </Card>
-              
+
               <Card className="bg-gradient-to-br from-purple-50 to-purple-100 border-purple-200 hover:shadow-lg transition-all">
                 <CardContent className="pt-6 text-center">
                   <Award className="h-14 w-14 mx-auto mb-4 text-purple-600" />
-                  <h3 className="font-bold text-lg mb-2 text-purple-900">Top-Tier Talent</h3>
+                  <h3 className="font-bold text-lg mb-2 text-purple-900">
+                    Top-Tier Talent
+                  </h3>
                   <p className="text-sm text-purple-700">
-                    Pre-screened, qualified professionals ready to drive your business forward
+                    Pre-screened, qualified professionals ready to drive your
+                    business forward
                   </p>
                 </CardContent>
               </Card>
-              
+
               <Card className="bg-gradient-to-br from-orange-50 to-orange-100 border-orange-200 hover:shadow-lg transition-all">
                 <CardContent className="pt-6 text-center">
                   <Target className="h-14 w-14 mx-auto mb-4 text-orange-600" />
-                  <h3 className="font-bold text-lg mb-2 text-orange-900">Beyond Perfection</h3>
+                  <h3 className="font-bold text-lg mb-2 text-orange-900">
+                    Beyond Perfection
+                  </h3>
                   <p className="text-sm text-orange-700">
-                    Making a difference through exceptional service and perfect matches
+                    Making a difference through exceptional service and perfect
+                    matches
                   </p>
                 </CardContent>
               </Card>
@@ -406,7 +402,8 @@ export function RecruitmentSection() {
                       Our Comprehensive Services
                     </h2>
                     <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                      End-to-end recruitment solutions designed to meet your unique needs
+                      End-to-end recruitment solutions designed to meet your
+                      unique needs
                     </p>
                   </div>
 
@@ -417,29 +414,41 @@ export function RecruitmentSection() {
                           <div className="bg-primary/10 p-3 rounded-lg">
                             <Building2 className="h-6 w-6 text-primary" />
                           </div>
-                          <CardTitle className="text-xl">For Employers</CardTitle>
+                          <CardTitle className="text-xl">
+                            For Employers
+                          </CardTitle>
                         </div>
                       </CardHeader>
                       <CardContent className="space-y-3">
                         <div className="flex items-start gap-2">
                           <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
-                          <p className="text-sm">Talent sourcing and headhunting services</p>
+                          <p className="text-sm">
+                            Talent sourcing and headhunting services
+                          </p>
                         </div>
                         <div className="flex items-start gap-2">
                           <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
-                          <p className="text-sm">Comprehensive candidate screening and assessment</p>
+                          <p className="text-sm">
+                            Comprehensive candidate screening and assessment
+                          </p>
                         </div>
                         <div className="flex items-start gap-2">
                           <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
-                          <p className="text-sm">Skills verification and background checks</p>
+                          <p className="text-sm">
+                            Skills verification and background checks
+                          </p>
                         </div>
                         <div className="flex items-start gap-2">
                           <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
-                          <p className="text-sm">Visa sponsorship and work permit assistance</p>
+                          <p className="text-sm">
+                            Visa sponsorship and work permit assistance
+                          </p>
                         </div>
                         <div className="flex items-start gap-2">
                           <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
-                          <p className="text-sm">Onboarding support and integration services</p>
+                          <p className="text-sm">
+                            Onboarding support and integration services
+                          </p>
                         </div>
                       </CardContent>
                     </Card>
@@ -450,29 +459,41 @@ export function RecruitmentSection() {
                           <div className="bg-secondary/10 p-3 rounded-lg">
                             <UserCheck className="h-6 w-6 text-secondary" />
                           </div>
-                          <CardTitle className="text-xl">For Job Seekers</CardTitle>
+                          <CardTitle className="text-xl">
+                            For Job Seekers
+                          </CardTitle>
                         </div>
                       </CardHeader>
                       <CardContent className="space-y-3">
                         <div className="flex items-start gap-2">
                           <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
-                          <p className="text-sm">Career counseling and pathway planning</p>
+                          <p className="text-sm">
+                            Career counseling and pathway planning
+                          </p>
                         </div>
                         <div className="flex items-start gap-2">
                           <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
-                          <p className="text-sm">Resume optimization and interview preparation</p>
+                          <p className="text-sm">
+                            Resume optimization and interview preparation
+                          </p>
                         </div>
                         <div className="flex items-start gap-2">
                           <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
-                          <p className="text-sm">Access to exclusive job opportunities</p>
+                          <p className="text-sm">
+                            Access to exclusive job opportunities
+                          </p>
                         </div>
                         <div className="flex items-start gap-2">
                           <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
-                          <p className="text-sm">Visa application and relocation support</p>
+                          <p className="text-sm">
+                            Visa application and relocation support
+                          </p>
                         </div>
                         <div className="flex items-start gap-2">
                           <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
-                          <p className="text-sm">Salary negotiation and contract review</p>
+                          <p className="text-sm">
+                            Salary negotiation and contract review
+                          </p>
                         </div>
                       </CardContent>
                     </Card>
@@ -480,7 +501,9 @@ export function RecruitmentSection() {
 
                   {/* Industry Expertise */}
                   <div className="text-center mb-8">
-                    <h3 className="text-2xl font-bold text-primary mb-6">Industry Expertise</h3>
+                    <h3 className="text-2xl font-bold text-primary mb-6">
+                      Industry Expertise
+                    </h3>
                     <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 max-w-5xl mx-auto">
                       {[
                         { icon: Laptop, label: "IT & Technology" },
@@ -495,7 +518,9 @@ export function RecruitmentSection() {
                           className="flex flex-col items-center p-4 bg-gray-50 rounded-lg hover:bg-primary/5 transition-all"
                         >
                           <industry.icon className="h-8 w-8 text-primary mb-2" />
-                          <p className="text-xs font-medium text-center">{industry.label}</p>
+                          <p className="text-xs font-medium text-center">
+                            {industry.label}
+                          </p>
                         </div>
                       ))}
                     </div>
@@ -521,7 +546,8 @@ export function RecruitmentSection() {
                       Why Choose Dream Sailor Consulting?
                     </h2>
                     <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                      We go beyond traditional recruitment to deliver excellence in every placement
+                      We go beyond traditional recruitment to deliver excellence
+                      in every placement
                     </p>
                   </div>
 
@@ -532,7 +558,9 @@ export function RecruitmentSection() {
                       </div>
                       <h3 className="font-bold text-lg mb-2">Global Network</h3>
                       <p className="text-sm text-muted-foreground">
-                        Access to a vast network of employers and candidates across multiple industries and countries, ensuring perfect matches
+                        Access to a vast network of employers and candidates
+                        across multiple industries and countries, ensuring
+                        perfect matches
                       </p>
                     </div>
 
@@ -540,9 +568,13 @@ export function RecruitmentSection() {
                       <div className="bg-secondary/10 w-14 h-14 rounded-full flex items-center justify-center mb-4">
                         <GraduationCap className="h-7 w-7 text-secondary" />
                       </div>
-                      <h3 className="font-bold text-lg mb-2">Certified Expertise</h3>
+                      <h3 className="font-bold text-lg mb-2">
+                        Certified Expertise
+                      </h3>
                       <p className="text-sm text-muted-foreground">
-                        Our team holds international certifications in recruitment, HR, and talent management with proven track records
+                        Our team holds international certifications in
+                        recruitment, HR, and talent management with proven track
+                        records
                       </p>
                     </div>
 
@@ -552,7 +584,8 @@ export function RecruitmentSection() {
                       </div>
                       <h3 className="font-bold text-lg mb-2">Visa Support</h3>
                       <p className="text-sm text-muted-foreground">
-                        Comprehensive visa sponsorship assistance for international placements and smooth relocations
+                        Comprehensive visa sponsorship assistance for
+                        international placements and smooth relocations
                       </p>
                     </div>
 
@@ -560,9 +593,12 @@ export function RecruitmentSection() {
                       <div className="bg-primary/10 w-14 h-14 rounded-full flex items-center justify-center mb-4">
                         <Briefcase className="h-7 w-7 text-primary" />
                       </div>
-                      <h3 className="font-bold text-lg mb-2">Flexible Options</h3>
+                      <h3 className="font-bold text-lg mb-2">
+                        Flexible Options
+                      </h3>
                       <p className="text-sm text-muted-foreground">
-                        From full-time to part-time, contract to permanent — we cover all employment types and arrangements
+                        From full-time to part-time, contract to permanent — we
+                        cover all employment types and arrangements
                       </p>
                     </div>
 
@@ -572,7 +608,8 @@ export function RecruitmentSection() {
                       </div>
                       <h3 className="font-bold text-lg mb-2">Proven Results</h3>
                       <p className="text-sm text-muted-foreground">
-                        Over 500 successful placements with a 95% satisfaction rate from both employers and candidates
+                        Over 500 successful placements with a 95% satisfaction
+                        rate from both employers and candidates
                       </p>
                     </div>
 
@@ -580,9 +617,12 @@ export function RecruitmentSection() {
                       <div className="bg-accent/10 w-14 h-14 rounded-full flex items-center justify-center mb-4">
                         <Clock className="h-7 w-7 text-accent" />
                       </div>
-                      <h3 className="font-bold text-lg mb-2">Fast Turnaround</h3>
+                      <h3 className="font-bold text-lg mb-2">
+                        Fast Turnaround
+                      </h3>
                       <p className="text-sm text-muted-foreground">
-                        Efficient screening process with average placement time of 2-3 weeks for qualified candidates
+                        Efficient screening process with average placement time
+                        of 2-3 weeks for qualified candidates
                       </p>
                     </div>
                   </div>
@@ -594,12 +634,13 @@ export function RecruitmentSection() {
           {/* Current Opportunities Section */}
           <div id="current-opportunities" className="mb-16">
             <h3 className="text-3xl font-bold text-center mb-4 text-primary flex items-center justify-center">
-              <Briefcase className="h-7 w-7 mr-2 text-accent" /> 
+              <Briefcase className="h-7 w-7 mr-2 text-accent" />
               Current Job Opportunities
             </h3>
             <p className="text-center text-muted-foreground mb-8 max-w-3xl mx-auto">
-              Browse through our curated job openings across various industries and locations. 
-              All positions are pre-screened to ensure quality opportunities for talented professionals.
+              Browse through our curated job openings across various industries
+              and locations. All positions are pre-screened to ensure quality
+              opportunities for talented professionals.
             </p>
 
             {/* Search Bar */}
@@ -813,7 +854,7 @@ export function RecruitmentSection() {
                                       href={`/recruitment/apply?jobId=${
                                         job.PostId
                                       }&jobUrl=${encodeURIComponent(
-                                        job.url || ""
+                                        job.url || "",
                                       )}`}
                                     >
                                       Apply Now
@@ -876,7 +917,7 @@ export function RecruitmentSection() {
                             variant="outline"
                             onClick={() =>
                               setCurrentPage((p) =>
-                                p < totalPages ? p + 1 : p
+                                p < totalPages ? p + 1 : p,
                               )
                             }
                             disabled={currentPage >= totalPages || isLoading}
@@ -909,7 +950,7 @@ export function RecruitmentSection() {
                         isVisible ? "animate-slide-up" : "opacity-0"
                       }`}
                     >
-                      <Users className="h-8 w-8 mr-2 text-accent" /> 
+                      <Users className="h-8 w-8 mr-2 text-accent" />
                       Meet Our Expert Consultants
                     </h2>
                     <p
@@ -917,15 +958,17 @@ export function RecruitmentSection() {
                         isVisible ? "animate-fade-in delay-100" : "opacity-0"
                       }`}
                     >
-                      Our certified recruitment professionals bring decades of combined experience 
-                      in connecting top talent with leading organizations worldwide.
+                      Our certified recruitment professionals bring decades of
+                      combined experience in connecting top talent with leading
+                      organizations worldwide.
                     </p>
                   </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 place-items-center">
                     {recruitmentConsultants.map((consultant, index) => (
                       <Card
                         key={consultant.name}
-                        className={`relative bg-white border border-primary/10 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 ${
+                        className={`relative w-full max-w-sm bg-white border border-primary/10 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 ${
                           isVisible ? "animate-slide-up" : "opacity-0"
                         }`}
                         style={{ animationDelay: `${index * 100}ms` }}
@@ -936,7 +979,7 @@ export function RecruitmentSection() {
                               <img
                                 src={consultant.photo}
                                 alt={consultant.name}
-                                className={`w-full h-full object-contain bg-white ${
+                                className={`absolute inset-0 w-full h-full object-contain bg-white ${
                                   isVisible ? "animate-scale-in" : "opacity-0"
                                 }`}
                               />
@@ -995,7 +1038,11 @@ export function RecruitmentSection() {
                             }`}
                           >
                             {consultant.certificates.map((cert) => (
-                              <Badge key={cert} variant="secondary" className="text-xs">
+                              <Badge
+                                key={cert}
+                                variant="secondary"
+                                className="text-xs"
+                              >
                                 {cert}
                               </Badge>
                             ))}
