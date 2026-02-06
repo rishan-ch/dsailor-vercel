@@ -22,10 +22,11 @@ import {
   Star,
   ExternalLink,
   Award,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import Link from "next/link";
 import { useBlogService } from "@/lib/blogService";
-import BlogCardView from "./ui/blog-card-view";
 import { useInView } from "@/hooks/use-in-view";
 import BlogSection from "./ui/blog-card-view";
 
@@ -52,29 +53,30 @@ const migrationConsultants: Consultant[] = [
     role: "Co/Founder, Director",
     bio: "Puskar Shrestha is the visionary Co-Founder and Director of D Sailor Group, bringing over a decade of expertise in international recruitment and migration services. With a proven track record of successfully placing professionals across Australia and globally, Puskar specializes in navigating complex visa processes and matching exceptional talent with career-defining opportunities. His strategic approach and deep understanding of Australian immigration policies have made him a trusted advisor for individuals and organizations seeking seamless migration solutions.",
     photo: "/Pushkar_Shrestha.png",
-    email: "busines@dsailorgroup.com.au / recruitment@dsailorgroup.com.au",
-    contactNumber: "+61-406704062 / +61-406204071"
+    email: "enquiry@dsailorgroup.com.au",
+    contactNumber: "+61-406204071",
   },
   {
     name: "Ms. Saglina Shrestha",
     role: "Founder/ Managing Director",
     bio: "Saglina Shrestha is the driving force behind D Sailor Group as its Founder and Managing Director. With an impressive portfolio of over 500 successful executive placements in multinational corporations, she has established herself as a leading authority in talent acquisition and migration services. Her expertise lies in identifying and securing opportunities for skilled professionals seeking to build their careers in Australia. Saglina's commitment to excellence and personalized client service has positioned D Sailor Group as a premier destination for comprehensive migration and recruitment solutions.",
     photo: "/Salina_Shrestha.png",
-    email: "busines@dsailorgroup.com.au / recruitment@dsailorgroup.com.au",
-    contactNumber: "+61-406704062 / +61-406204071"
+    email: "enquiry@dsailorgroup.com.au",
+    contactNumber: "+61-406204071",
   },
   {
     name: "Mr. Sohil Shrestha",
     role: "International Placement Specialist",
     bio: "Sohil Shrestha serves as the International Placement Specialist at D Sailor Group, where he excels in facilitating visa-sponsored roles and cross-border placements with a particular focus on Australian immigration. His expertise in navigating the intricate requirements of skilled migration visas, including the points-based system and employer-sponsored programs, has helped countless professionals realize their Australian dream. Sohil's meticulous attention to detail and comprehensive knowledge of immigration regulations ensure that clients receive tailored guidance throughout their entire migration journey.",
     photo: "/Sohil_Shrestha.png",
-    email: "busines@dsailorgroup.com.au / recruitment@dsailorgroup.com.au",
-    contactNumber: "+61-406704062 / +61-406204071"
+    email: "enquiry@dsailorgroup.com.au",
+    contactNumber: "+61-406204071",
   },
 ];
 
 export function VisaMigrationSection() {
   const [blogs, setBlogs] = useState<Blog[]>([]);
+  const [currentSlide, setCurrentSlide] = useState(0);
   const { getBlogByService } = useBlogService();
 
   const steps = [
@@ -119,21 +121,19 @@ export function VisaMigrationSection() {
   const visaTypes = [
     {
       title: "Student Visa",
-      description: "For international students pursuing education in Australia and abroad",
+      description:
+        "For international students pursuing education in Australia and abroad",
       countries: ["Australia", "USA", "Canada", "UK"],
       processingTime: "4-8 weeks",
       icon: <Globe className="h-6 w-6 text-primary" />,
-      link: "https://edupi.com.au",
-      linkText: "Visit Edupi Migration"
     },
     {
       title: "Work Visa",
-      description: "For professionals seeking employment opportunities in Australia and globally",
-      countries: ["Australia", "Germany", "Netherlands", "Singapore"],
+      description:
+        "For professionals seeking employment opportunities in Australia and globally",
+      countries: ["Australia", "Germany", "Netherlands"],
       processingTime: "6-12 weeks",
       icon: <Briefcase className="h-6 w-6 text-primary" />,
-      link: "https://edupi.com.au",
-      linkText: "Visit Edupi Migration"
     },
     {
       title: "Family Visa",
@@ -144,10 +144,86 @@ export function VisaMigrationSection() {
     },
     {
       title: "Investment Visa",
-      description: "For investors and entrepreneurs looking to migrate to Australia",
+      description:
+        "For investors and entrepreneurs looking to migrate to Australia",
       countries: ["Australia"],
       processingTime: "12-24 weeks",
       icon: <DollarSign className="h-6 w-6 text-primary" />,
+    },
+  ];
+
+  const skilledVisaTypes = [
+    {
+      subclass: "189",
+      title: "Skilled Independent Visa",
+      description:
+        "A points-based permanent residency visa for skilled workers who are not sponsored by an employer, state, or family member.",
+      features: [
+        "No employer sponsorship required",
+        "Permanent residency from day one",
+        "Work and live anywhere in Australia",
+        "Include family members in your application",
+        "Pathway to Australian citizenship",
+      ],
+      icon: <Award className="h-6 w-6" />,
+    },
+    {
+      subclass: "190",
+      title: "Skilled Nominated Visa",
+      description:
+        "A points-based permanent residency visa for skilled workers nominated by an Australian state or territory government.",
+      features: [
+        "Additional 5 points for state nomination",
+        "Permanent residency pathway",
+        "Access to Medicare and social services",
+        "Pathway to Australian citizenship",
+        "Must live in nominating state for 2 years",
+      ],
+      icon: <Globe className="h-6 w-6" />,
+    },
+    {
+      subclass: "489",
+      title: "Skilled Regional (Provisional) Visa",
+      description:
+        "A provisional visa for skilled workers willing to live and work in regional Australia (Note: Now replaced by subclass 491, but existing holders can apply for 887).",
+      features: [
+        "4-year provisional visa",
+        "Sponsored by state/territory or family",
+        "Live and work in regional Australia",
+        "Pathway to permanent residency (subclass 887)",
+        "Include family members",
+      ],
+      icon: <Star className="h-6 w-6" />,
+    },
+    {
+      subclass: "491",
+      title: "Skilled Work Regional (Provisional) Visa",
+      description:
+        "A 5-year provisional visa for skilled workers willing to live and work in regional Australia, nominated by a state/territory or sponsored by an eligible family member.",
+      features: [
+        "5-year provisional visa",
+        "15 points for regional nomination",
+        "Live, work and study in regional Australia",
+        "Pathway to permanent residency (subclass 191)",
+        "Access to Medicare",
+        "Include family members",
+      ],
+      icon: <Briefcase className="h-6 w-6" />,
+    },
+    {
+      subclass: "191",
+      title: "Permanent Residence (Skilled Regional) Visa",
+      description:
+        "A permanent residency visa for holders of subclass 491 or 494 visas who have lived and worked in regional Australia for at least 3 years.",
+      features: [
+        "Permanent residency status",
+        "For subclass 491/494 visa holders",
+        "Must have lived in regional Australia for 3 years",
+        "Meet minimum income requirement",
+        "Live anywhere in Australia after grant",
+        "Pathway to Australian citizenship",
+      ],
+      icon: <CheckCircle className="h-6 w-6" />,
     },
   ];
 
@@ -169,6 +245,20 @@ export function VisaMigrationSection() {
     fetchBlogs();
   }, []);
 
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % skilledVisaTypes.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide(
+      (prev) => (prev - 1 + skilledVisaTypes.length) % skilledVisaTypes.length,
+    );
+  };
+
+  const goToSlide = (index: number) => {
+    setCurrentSlide(index);
+  };
+
   return (
     <>
       {/* Hero Section */}
@@ -182,15 +272,16 @@ export function VisaMigrationSection() {
           />
           <div className="absolute inset-0 bg-primary/70 animate-fade-in"></div>
         </div>
-        
+
         {/* Content */}
         <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto animate-slide-up">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 text-balance animate-fade-in">
-            Your Australian <span className="text-secondary">Dream</span> Starts Here
+            Your Australian <span className="text-secondary">Dream</span> Starts
+            Here
           </h1>
           <p className="text-xl sm:text-2xl text-white/90 mb-8 max-w-3xl mx-auto text-pretty animate-fade-in delay-100">
-            Navigate your path to Australia with our expert visa and migration services 
-            designed to make your dreams a reality.
+            Navigate your path to Australia with our expert visa and migration
+            services designed to make your dreams a reality.
           </p>
           <div className="flex flex-wrap gap-4 justify-center animate-fade-in-up delay-150">
             <Link href="/book-consultation">
@@ -203,8 +294,8 @@ export function VisaMigrationSection() {
               </Button>
             </Link>
             <Link href="#skilled-migration">
-              <Button 
-                size="lg" 
+              <Button
+                size="lg"
                 variant="outline"
                 className="bg-white/10 backdrop-blur-sm text-white border-white/30 hover:bg-white/20 hover:text-white hover:border-white/50"
               >
@@ -212,15 +303,16 @@ export function VisaMigrationSection() {
               </Button>
             </Link>
           </div>
-          
+
           <div className="mt-10 flex items-center space-x-3 justify-center animate-fade-in-up delay-200">
             <span className="text-sm text-white/80">
-              <span className="font-medium text-white">2000+</span> successful visa applications to Australia
+              <span className="font-medium text-white">2000+</span> successful
+              visa applications to Australia
             </span>
           </div>
         </div>
       </section>
-      
+
       {/* Main Content */}
       <section id="visa-migration" className="py-20 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -230,8 +322,9 @@ export function VisaMigrationSection() {
               Australian Visa & Migration Services
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty leading-relaxed">
-              Embark on your journey to Australia with our expert visa and migration
-              services, tailored to make your dreams a reality with DreamSailor.
+              Embark on your journey to Australia with our expert visa and
+              migration services, tailored to make your dreams a reality with
+              DreamSailor.
             </p>
           </div>
 
@@ -256,7 +349,9 @@ export function VisaMigrationSection() {
                       <div
                         key={step.step}
                         className={`group relative flex items-center ${
-                          index % 2 === 0 ? "md:justify-end" : "md:justify-start"
+                          index % 2 === 0
+                            ? "md:justify-end"
+                            : "md:justify-start"
                         } mb-8 md:mb-12`}
                       >
                         <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-primary rounded-full"></div>
@@ -348,19 +443,11 @@ export function VisaMigrationSection() {
                               {visa.processingTime}
                             </span>
                           </div>
-                          {visa.link ? (
-                            <a href={visa.link} target="_blank" rel="noopener noreferrer">
-                              <Button className="w-full bg-primary hover:bg-blue-900 text-white transition-all">
-                                {visa.linkText} <ExternalLink className="ml-2 h-4 w-4" />
-                              </Button>
-                            </a>
-                          ) : (
-                            <Link href="/book-consultation">
-                              <Button className="w-full bg-primary hover:bg-blue-900 text-white transition-all">
-                                Get Started
-                              </Button>
-                            </Link>
-                          )}
+                          <Link href="/book-consultation">
+                            <Button className="w-full bg-primary hover:bg-blue-900 text-white transition-all">
+                              Get Started
+                            </Button>
+                          </Link>
                         </div>
                       </CardContent>
                     </Card>
@@ -370,8 +457,11 @@ export function VisaMigrationSection() {
             })()}
           </div>
 
-          {/* Australian Skilled Migration Section */}
-          <section id="skilled-migration" className="py-20 bg-gradient-to-br from-primary/5 to-accent/5 rounded-3xl">
+          {/* Australian Skilled Migration Section with Slider */}
+          <section
+            id="skilled-migration"
+            className="py-20 bg-gradient-to-br from-primary/5 to-accent/5 rounded-3xl"
+          >
             {(() => {
               const { ref, isVisible } = useInView<HTMLDivElement>();
               return (
@@ -395,84 +485,109 @@ export function VisaMigrationSection() {
                         isVisible ? "animate-fade-in delay-100" : "opacity-0"
                       }`}
                     >
-                      Unlock your pathway to permanent residency in Australia through our expert skilled migration services with DreamSailor.
+                      Unlock your pathway to permanent residency in Australia
+                      through our expert skilled migration services with
+                      DreamSailor.
                     </p>
                   </div>
 
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
-                    <Card className="border-2 border-primary/20 shadow-xl">
-                      <CardHeader>
-                        <CardTitle className="text-2xl text-primary flex items-center">
-                          <Award className="h-6 w-6 mr-2 flex-shrink-0" />
-                          Skilled Independent Visa (Subclass 189)
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent className="space-y-4">
-                        <p className="text-muted-foreground">
-                          A points-based permanent residency visa for skilled workers who are not sponsored by an employer, state, or family member.
-                        </p>
-                        <ul className="space-y-2 text-sm">
-                          <li className="flex items-start">
-                            <CheckCircle className="h-5 w-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" />
-                            <span>No employer sponsorship required</span>
-                          </li>
-                          <li className="flex items-start">
-                            <CheckCircle className="h-5 w-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" />
-                            <span>Permanent residency from day one</span>
-                          </li>
-                          <li className="flex items-start">
-                            <CheckCircle className="h-5 w-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" />
-                            <span>Work and live anywhere in Australia</span>
-                          </li>
-                          <li className="flex items-start">
-                            <CheckCircle className="h-5 w-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" />
-                            <span>Include family members in your application</span>
-                          </li>
-                        </ul>
-                        <a href="https://australianskilledmigration.com.au" target="_blank" rel="noopener noreferrer">
-                          <Button className="w-full mt-4 bg-primary hover:bg-blue-900">
-                            Learn More <ExternalLink className="ml-2 h-4 w-4" />
-                          </Button>
-                        </a>
-                      </CardContent>
-                    </Card>
+                  {/* Visa Types Slider */}
+                  <div className="relative mb-12">
+                    <div className="overflow-hidden">
+                      <div
+                        className="flex transition-transform duration-500 ease-in-out"
+                        style={{
+                          transform: `translateX(-${currentSlide * 100}%)`,
+                        }}
+                      >
+                        {skilledVisaTypes.map((visa, index) => (
+                          <div
+                            key={index}
+                            className="w-full flex-shrink-0 px-4"
+                          >
+                            <Card className="border-2 border-primary/20 shadow-xl max-w-4xl mx-auto">
+                              <CardHeader>
+                                <div className="flex items-center justify-between mb-2">
+                                  <Badge className="bg-primary text-white text-lg px-4 py-1">
+                                    Subclass {visa.subclass}
+                                  </Badge>
+                                  <div className="text-primary">
+                                    {visa.icon}
+                                  </div>
+                                </div>
+                                <CardTitle className="text-2xl text-primary">
+                                  {visa.title}
+                                </CardTitle>
+                              </CardHeader>
+                              <CardContent className="space-y-4">
+                                <p className="text-muted-foreground text-lg">
+                                  {visa.description}
+                                </p>
+                                <div className="pt-4">
+                                  <h4 className="font-semibold text-lg mb-4 text-primary">
+                                    Key Features:
+                                  </h4>
+                                  <ul className="space-y-3">
+                                    {visa.features.map((feature, idx) => (
+                                      <li
+                                        key={idx}
+                                        className="flex items-start"
+                                      >
+                                        <CheckCircle className="h-5 w-5 text-green-600 mr-3 flex-shrink-0 mt-0.5" />
+                                        <span className="text-sm">
+                                          {feature}
+                                        </span>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </div>
+                                <div className="pt-6">
+                                  <Link href="/book-consultation">
+                                    <div className="flex justify-center">
+                                      <Button className="w-64 bg-primary hover:bg-primary/90 text-white">
+                                        Get Expert Consultation
+                                      </Button>
+                                    </div>
+                                  </Link>
+                                </div>
+                              </CardContent>
+                            </Card>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
 
-                    <Card className="border-2 border-primary/20 shadow-xl">
-                      <CardHeader>
-                        <CardTitle className="text-2xl text-primary flex items-center">
-                          <Globe className="h-6 w-6 mr-2 flex-shrink-0" />
-                          Skilled Nominated Visa (Subclass 190)
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent className="space-y-4">
-                        <p className="text-muted-foreground">
-                          A points-based permanent residency visa for skilled workers nominated by an Australian state or territory government.
-                        </p>
-                        <ul className="space-y-2 text-sm">
-                          <li className="flex items-start">
-                            <CheckCircle className="h-5 w-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" />
-                            <span>Additional 5 points for state nomination</span>
-                          </li>
-                          <li className="flex items-start">
-                            <CheckCircle className="h-5 w-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" />
-                            <span>Permanent residency pathway</span>
-                          </li>
-                          <li className="flex items-start">
-                            <CheckCircle className="h-5 w-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" />
-                            <span>Access to Medicare and social services</span>
-                          </li>
-                          <li className="flex items-start">
-                            <CheckCircle className="h-5 w-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" />
-                            <span>Pathway to Australian citizenship</span>
-                          </li>
-                        </ul>
-                        <a href="https://australianskilledmigration.com.au" target="_blank" rel="noopener noreferrer">
-                          <Button className="w-full mt-4 bg-primary hover:bg-blue-900">
-                            Learn More <ExternalLink className="ml-2 h-4 w-4" />
-                          </Button>
-                        </a>
-                      </CardContent>
-                    </Card>
+                    {/* Navigation Buttons */}
+                    <button
+                      onClick={prevSlide}
+                      className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white rounded-full p-3 shadow-lg hover:bg-primary hover:text-white transition-all z-10"
+                      aria-label="Previous slide"
+                    >
+                      <ChevronLeft className="h-6 w-6" />
+                    </button>
+                    <button
+                      onClick={nextSlide}
+                      className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white rounded-full p-3 shadow-lg hover:bg-primary hover:text-white transition-all z-10"
+                      aria-label="Next slide"
+                    >
+                      <ChevronRight className="h-6 w-6" />
+                    </button>
+
+                    {/* Dots Indicator */}
+                    <div className="flex justify-center gap-2 mt-8">
+                      {skilledVisaTypes.map((_, index) => (
+                        <button
+                          key={index}
+                          onClick={() => goToSlide(index)}
+                          className={`h-3 rounded-full transition-all ${
+                            currentSlide === index
+                              ? "w-8 bg-primary"
+                              : "w-3 bg-primary/30 hover:bg-primary/50"
+                          }`}
+                          aria-label={`Go to slide ${index + 1}`}
+                        />
+                      ))}
+                    </div>
                   </div>
 
                   <Card className="border-2 border-accent/30 bg-white shadow-xl">
@@ -482,49 +597,70 @@ export function VisaMigrationSection() {
                         Points Assessment System
                       </CardTitle>
                       <CardDescription className="text-center text-lg">
-                        Calculate your eligibility for Australian skilled migration
+                        Calculate your eligibility for Australian skilled
+                        migration
                       </CardDescription>
                     </CardHeader>
                     <CardContent>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="space-y-3">
-                          <h4 className="font-semibold text-primary">Key Factors:</h4>
+                          <h4 className="font-semibold text-primary">
+                            Key Factors:
+                          </h4>
                           <ul className="space-y-2 text-sm">
                             <li className="flex items-center">
-                              <Badge variant="outline" className="mr-2">Age</Badge>
+                              <Badge variant="outline" className="mr-2">
+                                Age
+                              </Badge>
                               <span>25-32 years (maximum points)</span>
                             </li>
                             <li className="flex items-center">
-                              <Badge variant="outline" className="mr-2">English</Badge>
+                              <Badge variant="outline" className="mr-2">
+                                English
+                              </Badge>
                               <span>Superior English (IELTS 8.0+)</span>
                             </li>
                             <li className="flex items-center">
-                              <Badge variant="outline" className="mr-2">Experience</Badge>
+                              <Badge variant="outline" className="mr-2">
+                                Experience
+                              </Badge>
                               <span>8+ years skilled employment</span>
                             </li>
                             <li className="flex items-center">
-                              <Badge variant="outline" className="mr-2">Education</Badge>
+                              <Badge variant="outline" className="mr-2">
+                                Education
+                              </Badge>
                               <span>Australian degree or equivalent</span>
                             </li>
                           </ul>
                         </div>
                         <div className="space-y-3">
-                          <h4 className="font-semibold text-primary">Additional Points:</h4>
+                          <h4 className="font-semibold text-primary">
+                            Additional Points:
+                          </h4>
                           <ul className="space-y-2 text-sm">
                             <li className="flex items-center">
-                              <Badge variant="outline" className="mr-2">Partner</Badge>
+                              <Badge variant="outline" className="mr-2">
+                                Partner
+                              </Badge>
                               <span>Skilled partner (5-10 points)</span>
                             </li>
                             <li className="flex items-center">
-                              <Badge variant="outline" className="mr-2">State</Badge>
+                              <Badge variant="outline" className="mr-2">
+                                State
+                              </Badge>
                               <span>State nomination (5 points)</span>
                             </li>
                             <li className="flex items-center">
-                              <Badge variant="outline" className="mr-2">Regional</Badge>
-                              <span>Regional study (5 points)</span>
+                              <Badge variant="outline" className="mr-2">
+                                Regional
+                              </Badge>
+                              <span>Regional study/work (5-15 points)</span>
                             </li>
                             <li className="flex items-center">
-                              <Badge variant="outline" className="mr-2">STEM</Badge>
+                              <Badge variant="outline" className="mr-2">
+                                STEM
+                              </Badge>
                               <span>STEM qualification (10 points)</span>
                             </li>
                           </ul>
@@ -535,27 +671,12 @@ export function VisaMigrationSection() {
                           Minimum Points Required: 65
                         </p>
                         <p className="text-sm text-muted-foreground mb-4">
-                          Higher points increase your chances of receiving an invitation
+                          Higher points increase your chances of receiving an
+                          invitation
                         </p>
-                        <a href="https://australianskilledmigration.com.au" target="_blank" rel="noopener noreferrer">
-                          <Button size="lg" className="bg-accent hover:bg-accent/90">
-                            Calculate Your Points <ExternalLink className="ml-2 h-4 w-4" />
-                          </Button>
-                        </a>
                       </div>
                     </CardContent>
                   </Card>
-
-                  <div className="mt-12 text-center">
-                    <p className="text-muted-foreground mb-4">
-                      For comprehensive information about Australian skilled migration pathways
-                    </p>
-                    <a href="https://australianskilledmigration.com.au" target="_blank" rel="noopener noreferrer">
-                      <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white">
-                        Visit Australian Skilled Migration <ExternalLink className="ml-2 h-4 w-4" />
-                      </Button>
-                    </a>
-                  </div>
                 </div>
               );
             })()}
@@ -576,7 +697,8 @@ export function VisaMigrationSection() {
                       Our Success Record
                     </h3>
                     <p className="text-white/80 text-lg">
-                      Trusted by thousands of clients seeking Australian migration
+                      Trusted by thousands of clients seeking Australian
+                      migration
                     </p>
                   </div>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
@@ -596,7 +718,9 @@ export function VisaMigrationSection() {
                         <div className="text-4xl font-bold mb-2 animate-pulse">
                           {stat.value}
                         </div>
-                        <div className="text-sm text-white/80">{stat.label}</div>
+                        <div className="text-sm text-white/80">
+                          {stat.label}
+                        </div>
                       </div>
                     ))}
                   </div>
@@ -622,7 +746,7 @@ export function VisaMigrationSection() {
                         isVisible ? "animate-slide-up" : "opacity-0"
                       }`}
                     >
-                      <Users className="h-8 w-8 mr-2 text-accent" /> 
+                      <Users className="h-8 w-8 mr-2 text-accent" />
                       Meet Our Migration Consultants
                     </h2>
                     <p
@@ -630,7 +754,8 @@ export function VisaMigrationSection() {
                         isVisible ? "animate-fade-in delay-100" : "opacity-0"
                       }`}
                     >
-                      Our expert team provides personalized support and guidance for your Australian visa and migration journey.
+                      Our expert team provides personalized support and guidance
+                      for your Australian visa and migration journey.
                     </p>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -667,12 +792,20 @@ export function VisaMigrationSection() {
                           </p>
                           <div className="pt-4 border-t border-primary/10 space-y-2">
                             <div className="flex items-start">
-                              <span className="font-semibold text-xs text-primary mr-2">Email:</span>
-                              <span className="text-xs text-muted-foreground break-all">{consultant.email}</span>
+                              <span className="font-semibold text-xs text-primary mr-2">
+                                Email:
+                              </span>
+                              <span className="text-xs text-muted-foreground break-all">
+                                {consultant.email}
+                              </span>
                             </div>
                             <div className="flex items-start">
-                              <span className="font-semibold text-xs text-primary mr-2">Contact:</span>
-                              <span className="text-xs text-muted-foreground">{consultant.contactNumber}</span>
+                              <span className="font-semibold text-xs text-primary mr-2">
+                                Contact:
+                              </span>
+                              <span className="text-xs text-muted-foreground">
+                                {consultant.contactNumber}
+                              </span>
                             </div>
                           </div>
                         </CardContent>
