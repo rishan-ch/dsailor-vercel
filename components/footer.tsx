@@ -72,7 +72,7 @@ export function Footer({ className }: FooterProps) {
               </div>
               <div className="flex items-center animate-fade-in delay-300">
                 <Phone className="h-4 w-4 mr-2 animate-pulse" />
-                <span> 0406204071</span>
+                <span> +61-406204071</span>
               </div>
               <div className="flex items-center animate-fade-in delay-400">
                 <Mail className="h-4 w-4 mr-2 animate-pulse" />

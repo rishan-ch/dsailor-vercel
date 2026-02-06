@@ -49,8 +49,8 @@ const businessConsultants: Consultant[] = [
     description:
       "A seasoned business leader with over a decade of experience in managing and advising organizations across multiple industries. Mr. Shrestha plays a key role in strategic planning, operational oversight, and investor-aligned business management, ensuring smooth execution of business initiatives and high-impact corporate events.",
     photo: "/Pushkar_Shrestha.png",
-    email: "enquiry@dsailorgroup.com.au",
-    contactNumber: "0406204071",
+    email: "business@dsailorgroup.com.au",
+    contactNumber: "+61-406204071",
   },
   {
     name: "Ms. Saglina Shrestha",
@@ -58,8 +58,8 @@ const businessConsultants: Consultant[] = [
     description:
       "An accomplished business strategist and managing director with extensive experience in executive leadership and organizational growth. Ms. Shrestha oversees business development, high-level decision-making, and corporate event direction, helping organizations align their goals with measurable outcomes and long-term success.",
     photo: "/Salina_Shrestha.png",
-    email: "enquiry@dsailorgroup.com.au",
-    contactNumber: "0406204071",
+    email: "business@dsailorgroup.com.au",
+    contactNumber: "+61-406204071",
   },
   {
     name: "Mr. Nitesh Pokhrel",
@@ -67,8 +67,8 @@ const businessConsultants: Consultant[] = [
     description:
       "A corporate operations specialist with strong expertise in business coordination and large-scale operational management. Mr. Pokhrel focuses on corporate governance, cross-functional execution, and business event facilitation, ensuring seamless coordination between stakeholders, partners, and operational teams.",
     photo: "/nitesh pokhrel.png",
-    email: "enquiry@dsailorgroup.com.au",
-    contactNumber: "0406204071",
+    email: "business@dsailorgroup.com.au",
+    contactNumber: "+61-406204071",
   },
 ];
 

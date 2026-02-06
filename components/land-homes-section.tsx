@@ -37,7 +37,7 @@ const realEstateConsultants: Consultant[] = [
       "Real Estate Investment Specialist",
     ],
     email: "enquiryy@dsailorgroup.com.au",
-    contactNumber: "0406204071",
+    contactNumber: "+61-406204071",
   },
   {
     name: "Ms. Saglina Shrestha",
@@ -51,7 +51,7 @@ const realEstateConsultants: Consultant[] = [
       "Commercial Real Estate Certification",
     ],
     email: "enquiryy@dsailorgroup.com.au",
-    contactNumber: "0406204071",
+    contactNumber: "+61-406204071",
   },
   {
     name: "Mr. Sohil Shrestha",
@@ -65,10 +65,10 @@ const realEstateConsultants: Consultant[] = [
       "Land Development Specialist",
     ],
     email: "enquiryy@dsailorgroup.com.au",
-    contactNumber: "0406204071",
+    contactNumber: "+61-406204071",
   },
   {
-    name: "Mr. Chitra Raj Bhattarai",
+    name: "Mr. Chitra Raj Bhatta",
     role: "Property Investment Consultant",
     description:
       "Specializing in land development, property valuations, and investment strategies. He helps clients identify lucrative opportunities in residential and commercial real estate markets.",
@@ -78,8 +78,8 @@ const realEstateConsultants: Consultant[] = [
       "Real Estate Investment Analyst",
       "Land Development Specialist",
     ],
-    email: "enquiryy@dsailorgroup.com.au",
-    contactNumber: "0406204071",
+    email: "business@dsailorgroup.com.au",
+    contactNumber: "+61-406204071",
   },
 ];
 

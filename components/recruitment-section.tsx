@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect,  useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Card,
   CardContent,
@@ -104,7 +104,7 @@ const recruitmentConsultants: Consultant[] = [
       "Global Talent Acquisition Specialist",
     ],
     email: "recruitment@dsailorgroup.com.au",
-    contactNumber: "0406204071",
+    contactNumber: "+61-406204071",
   },
   {
     name: "Mr. Sohil Shrestha",
@@ -118,7 +118,7 @@ const recruitmentConsultants: Consultant[] = [
       "Cross-Cultural Recruitment Specialist",
     ],
     email: "recruitment@dsailorgroup.com.au",
-    contactNumber: "0406204071",
+    contactNumber: "+61-406204071",
   },
 ];
 
@@ -964,7 +964,7 @@ export function RecruitmentSection() {
                     </p>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 place-items-center">
+                  <div className="flex justify-center gap-8">
                     {recruitmentConsultants.map((consultant, index) => (
                       <Card
                         key={consultant.name}

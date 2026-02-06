@@ -17,7 +17,7 @@ import {
   ChevronDown,
   ExternalLink,
   ChevronRight,
-  X
+  X,
 } from "lucide-react";
 import BlogSection from "./ui/blog-card-view";
 import { useEffect, useState } from "react";
@@ -210,7 +210,7 @@ const recruitmentConsultants: Consultant[] = [
       "Talent Management Diploma",
     ],
     email: "enquiry@dsailorgroup.com.au",
-    contactNumber: "0406204071",
+    contactNumber: "+61-406204071",
   },
 ];
 
@@ -582,6 +582,25 @@ export function EducationSection() {
                 </CardContent>
               </Card>
             ))}
+          </div>
+
+          <div className="mt-20 flex flex-col items-center justify-center">
+            <div className="text-center mb-8">
+              <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-3">
+                Certified Education Counsellor
+              </h3>
+              <p className="text-muted-foreground max-w-xl mx-auto">
+                Our counsellors are qualified professionals certified by ICEF
+                Academy
+              </p>
+            </div>
+            <div className="w-full max-w-md mx-auto">
+              <img
+                src="./education certification.png"
+                alt="ICEF Academy Education Agent Training Course Certificate"
+                className="w-full h-auto rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
+              />
+            </div>
           </div>
 
           <section className="py-12 sm:py-20 bg-background">
@@ -1139,7 +1158,7 @@ export function EducationSection() {
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 place-items-center">
+              <div className="flex justify-center">
                 {recruitmentConsultants.map((consultant, index) => (
                   <Card
                     key={consultant.name}
@@ -1201,8 +1220,7 @@ export function EducationSection() {
                         className={`flex flex-wrap gap-2 mt-2 justify-center ${
                           isVisible ? "animate-fade-in delay-500" : "opacity-0"
                         }`}
-                      >
-                      </div>
+                      ></div>
                     </CardContent>
                   </Card>
                 ))}

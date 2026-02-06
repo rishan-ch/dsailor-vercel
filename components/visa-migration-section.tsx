@@ -53,7 +53,7 @@ const migrationConsultants: Consultant[] = [
     bio: "Puskar Shrestha is the visionary Co-Founder and Director of D Sailor Group, bringing over a decade of expertise in international recruitment and migration services. With a proven track record of successfully placing professionals across Australia and globally, Puskar specializes in navigating complex visa processes and matching exceptional talent with career-defining opportunities. His strategic approach and deep understanding of Australian immigration policies have made him a trusted advisor for individuals and organizations seeking seamless migration solutions.",
     photo: "/Pushkar_Shrestha.png",
     email: "busines@dsailorgroup.com.au / recruitment@dsailorgroup.com.au",
-    contactNumber: "+61-406704062 / 0406204071"
+    contactNumber: "+61-406704062 / +61-406204071"
   },
   {
     name: "Ms. Saglina Shrestha",
@@ -61,7 +61,7 @@ const migrationConsultants: Consultant[] = [
     bio: "Saglina Shrestha is the driving force behind D Sailor Group as its Founder and Managing Director. With an impressive portfolio of over 500 successful executive placements in multinational corporations, she has established herself as a leading authority in talent acquisition and migration services. Her expertise lies in identifying and securing opportunities for skilled professionals seeking to build their careers in Australia. Saglina's commitment to excellence and personalized client service has positioned D Sailor Group as a premier destination for comprehensive migration and recruitment solutions.",
     photo: "/Salina_Shrestha.png",
     email: "busines@dsailorgroup.com.au / recruitment@dsailorgroup.com.au",
-    contactNumber: "+61-406704062 / 0406204071"
+    contactNumber: "+61-406704062 / +61-406204071"
   },
   {
     name: "Mr. Sohil Shrestha",
@@ -69,7 +69,7 @@ const migrationConsultants: Consultant[] = [
     bio: "Sohil Shrestha serves as the International Placement Specialist at D Sailor Group, where he excels in facilitating visa-sponsored roles and cross-border placements with a particular focus on Australian immigration. His expertise in navigating the intricate requirements of skilled migration visas, including the points-based system and employer-sponsored programs, has helped countless professionals realize their Australian dream. Sohil's meticulous attention to detail and comprehensive knowledge of immigration regulations ensure that clients receive tailored guidance throughout their entire migration journey.",
     photo: "/Sohil_Shrestha.png",
     email: "busines@dsailorgroup.com.au / recruitment@dsailorgroup.com.au",
-    contactNumber: "+61-406704062 / 0406204071"
+    contactNumber: "+61-406704062 / +61-406204071"
   },
 ];
 
