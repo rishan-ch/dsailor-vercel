@@ -603,26 +603,6 @@ export default function HomePage() {
         </section>
         <AboutTestimonialsSection className="animate-fade-in-up" />
 
-        {/* Consultant Info Section */}
-      <section id="consultant-info" className="py-20">
-        <div className="relative text-center">
-                          <span className="bg-background px-6 text-3xl font-medium mb-5">Contact Person</span>
-                        </div>
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 mt-5">
-          <div className="max-w-2xl mx-auto bg-white border border-primary/10 rounded-xl shadow-lg p-10 text-center hover:shadow-xl transition-all duration-300">
-            <h3 className="font-semibold text-2xl mb-3 text-primary">Lilash Yadav</h3>
-            <p className="text-sm text-muted-foreground mb-2">Registered MARA 2318244</p>
-            <p className="text-sm text-pretty mb-2">dreamsailor@4acs.com.au</p>
-            <p className="text-sm text-muted-foreground mb-1">
-              Level 4, 17-21 University Avenue, ACT 2601
-            </p>
-            <p className="text-sm text-muted-foreground mb-4">
-              Level 6, 379-383 Pitt Street, Sydney 2000
-            </p>
-          </div>
-        </div>
-      </section>
-
       </main>
       <Footer className="animate-fade-in" />
       <Toaster />

@@ -24,6 +24,8 @@ import {
   Award,
   ChevronLeft,
   ChevronRight,
+  MapPin,
+  Mail,
 } from "lucide-react";
 import Link from "next/link";
 import { useBlogService } from "@/lib/blogService";
@@ -37,42 +39,6 @@ interface Blog {
   type: string;
   createdAt: string;
 }
-
-interface Consultant {
-  name: string;
-  role: string;
-  bio: string;
-  photo: string;
-  email: string;
-  contactNumber: string;
-}
-
-const migrationConsultants: Consultant[] = [
-  {
-    name: "Mr. Puskar Shrestha",
-    role: "Co/Founder, Director",
-    bio: "Puskar Shrestha is the visionary Co-Founder and Director of D Sailor Group, bringing over a decade of expertise in international recruitment and migration services. With a proven track record of successfully placing professionals across Australia and globally, Puskar specializes in navigating complex visa processes and matching exceptional talent with career-defining opportunities. His strategic approach and deep understanding of Australian immigration policies have made him a trusted advisor for individuals and organizations seeking seamless migration solutions.",
-    photo: "/Pushkar_Shrestha.png",
-    email: "enquiry@dsailorgroup.com.au",
-    contactNumber: "+61-406204071",
-  },
-  {
-    name: "Ms. Saglina Shrestha",
-    role: "Founder/ Managing Director",
-    bio: "Saglina Shrestha is the driving force behind D Sailor Group as its Founder and Managing Director. With an impressive portfolio of over 500 successful executive placements in multinational corporations, she has established herself as a leading authority in talent acquisition and migration services. Her expertise lies in identifying and securing opportunities for skilled professionals seeking to build their careers in Australia. Saglina's commitment to excellence and personalized client service has positioned D Sailor Group as a premier destination for comprehensive migration and recruitment solutions.",
-    photo: "/Salina_Shrestha.png",
-    email: "enquiry@dsailorgroup.com.au",
-    contactNumber: "+61-406204071",
-  },
-  {
-    name: "Mr. Sohil Shrestha",
-    role: "International Placement Specialist",
-    bio: "Sohil Shrestha serves as the International Placement Specialist at D Sailor Group, where he excels in facilitating visa-sponsored roles and cross-border placements with a particular focus on Australian immigration. His expertise in navigating the intricate requirements of skilled migration visas, including the points-based system and employer-sponsored programs, has helped countless professionals realize their Australian dream. Sohil's meticulous attention to detail and comprehensive knowledge of immigration regulations ensure that clients receive tailored guidance throughout their entire migration journey.",
-    photo: "/Sohil_Shrestha.png",
-    email: "enquiry@dsailorgroup.com.au",
-    contactNumber: "+61-406204071",
-  },
-];
 
 export function VisaMigrationSection() {
   const [blogs, setBlogs] = useState<Blog[]>([]);
@@ -728,9 +694,8 @@ export function VisaMigrationSection() {
               );
             })()}
           </div>
-
-          {/* Consultants Section */}
-          <section id="team" className="py-20">
+          {/* Consultant Info Section */}
+          <section id="consultant-info" className="py-20">
             {(() => {
               const { ref, isVisible } = useInView<HTMLDivElement>();
               return (
@@ -740,77 +705,100 @@ export function VisaMigrationSection() {
                     isVisible ? "animate-fade-in-up" : "opacity-0"
                   }`}
                 >
-                  <div className="text-center mb-16">
+                  <div className="text-center mb-12">
                     <h2
                       className={`text-3xl sm:text-4xl font-bold text-primary mb-4 flex items-center justify-center ${
                         isVisible ? "animate-slide-up" : "opacity-0"
                       }`}
                     >
                       <Users className="h-8 w-8 mr-2 text-accent" />
-                      Meet Our Migration Consultants
+                      Meet Our Expert Consultant
                     </h2>
                     <p
-                      className={`text-xl text-muted-foreground max-w-3xl mx-auto text-pretty ${
+                      className={`text-lg text-muted-foreground max-w-2xl mx-auto ${
                         isVisible ? "animate-fade-in delay-100" : "opacity-0"
                       }`}
                     >
-                      Our expert team provides personalized support and guidance
-                      for your Australian visa and migration journey.
+                      Our MARA registered migration agent is here to guide you
+                      through your Australian visa journey
                     </p>
                   </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {migrationConsultants.map((consultant, index) => (
-                      <Card
-                        key={consultant.name}
-                        className={`relative bg-white border border-primary/10 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 ${
-                          isVisible ? "animate-slide-up" : "opacity-0"
-                        }`}
-                        style={{ animationDelay: `${index * 100}ms` }}
-                      >
-                        <CardHeader className="pt-8 pb-4">
-                          <div className="flex justify-center mb-4">
-                            <div className="relative w-32 h-32 rounded-full overflow-hidden border-4 border-primary/10">
-                              <img
-                                src={consultant.photo}
-                                alt={consultant.name}
-                                className={`w-full h-full object-contain bg-white ${
-                                  isVisible ? "animate-scale-in" : "opacity-0"
-                                }`}
-                              />
+
+                  <div className="flex justify-center">
+                    <Card
+                      className={`max-w-2xl w-full bg-white border border-primary/10 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden ${
+                        isVisible ? "animate-slide-up" : "opacity-0"
+                      }`}
+                    >
+                      <div className="grid md:grid-cols-[200px_1fr] gap-6 p-6">
+                        {/* Image Section */}
+                        <div className="flex justify-center md:justify-start">
+                          <div className="relative w-48 h-48 md:w-full md:h-full rounded-lg overflow-hidden bg-muted border-2 border-primary/10">
+                            <img
+                              src="/team/Lilash Yadav.jpeg"
+                              alt="Lilash Yadav"
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+                        </div>
+
+                        {/* Info Section */}
+                        <div className="flex flex-col justify-center text-center md:text-left space-y-3">
+                          <div>
+                            <h3 className="text-2xl font-bold text-primary mb-1">
+                              Lilash Yadav
+                            </h3>
+                            <div className="flex items-center justify-center md:justify-start gap-2 mb-3">
+                              <Badge className="bg-accent text-white">
+                                MARA Registered
+                              </Badge>
+                              <Badge
+                                variant="outline"
+                                className="border-primary text-primary"
+                              >
+                                2318244
+                              </Badge>
                             </div>
                           </div>
-                          <CardTitle className="text-center text-xl font-bold text-primary">
-                            {consultant.name}
-                          </CardTitle>
-                          <CardDescription className="text-center text-sm font-medium text-accent">
-                            {consultant.role}
-                          </CardDescription>
-                        </CardHeader>
-                        <CardContent className="space-y-4">
-                          <p className="text-sm text-muted-foreground text-pretty leading-relaxed">
-                            {consultant.bio}
-                          </p>
-                          <div className="pt-4 border-t border-primary/10 space-y-2">
-                            <div className="flex items-start">
-                              <span className="font-semibold text-xs text-primary mr-2">
-                                Email:
-                              </span>
-                              <span className="text-xs text-muted-foreground break-all">
-                                {consultant.email}
-                              </span>
+
+                          <div className="space-y-2 text-sm">
+                            <div className="flex items-start justify-center md:justify-start gap-2">
+                              <Mail className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                              <a
+                                href="mailto:dreamsailor@4acs.com.au"
+                                className="text-muted-foreground hover:text-primary transition-colors"
+                              >
+                                dreamsailor@4acs.com.au
+                              </a>
                             </div>
-                            <div className="flex items-start">
-                              <span className="font-semibold text-xs text-primary mr-2">
-                                Contact:
-                              </span>
-                              <span className="text-xs text-muted-foreground">
-                                {consultant.contactNumber}
-                              </span>
+
+                            <div className="flex items-start justify-center md:justify-start gap-2">
+                              <MapPin className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                              <div className="text-muted-foreground">
+                                <p>Level 4, 17-21 University Avenue</p>
+                                <p>ACT 2601, Australia</p>
+                              </div>
+                            </div>
+
+                            <div className="flex items-start justify-center md:justify-start gap-2">
+                              <MapPin className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                              <div className="text-muted-foreground">
+                                <p>Level 6, 379-383 Pitt Street</p>
+                                <p>Sydney 2000, Australia</p>
+                              </div>
                             </div>
                           </div>
-                        </CardContent>
-                      </Card>
-                    ))}
+
+                          <div className="pt-4">
+                            <Link href="/book-consultation">
+                              <Button className="w-full md:w-auto bg-primary hover:bg-primary/90 text-white">
+                                Book Consultation
+                              </Button>
+                            </Link>
+                          </div>
+                        </div>
+                      </div>
+                    </Card>
                   </div>
                 </div>
               );
